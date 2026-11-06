@@ -1,0 +1,108 @@
+relationship cf78d07a-75d1-49b6-8786-0543502ab510
+	joinOnDateBehavior: datePartOnly
+	fromColumn: FCT_DAILY_CARD_CLASS_REVENUE.DATE_DAY
+	toColumn: LocalDateTable_2c77da1f-294d-40e9-99e8-d2c961a7d838.Date
+
+relationship 020004dc-a937-426c-8aee-4c09424b6f24
+	joinOnDateBehavior: datePartOnly
+	fromColumn: FCT_DAILY_CARD_CLASS_REVENUE._MART_BUILT_AT
+	toColumn: LocalDateTable_b44f48ae-22f2-4264-9216-36d5f93173f7.Date
+
+relationship 75d9ca8e-d49f-4b0d-941e-ab1ab6efa87c
+	joinOnDateBehavior: datePartOnly
+	fromColumn: FCT_DAILY_MERCHANT_REVENUE.DATE_DAY
+	toColumn: LocalDateTable_c9854f27-9b5b-4c45-9743-0c3edcaaf139.Date
+
+relationship ba242da0-b212-4e8c-916b-90529e1e7e8a
+	joinOnDateBehavior: datePartOnly
+	fromColumn: FCT_DAILY_MERCHANT_REVENUE._MART_BUILT_AT
+	toColumn: LocalDateTable_8d9d876e-e3c7-449e-8c68-9d4f4ce1ca63.Date
+
+relationship 124d7c62-86ae-4f0e-8763-f77f38b7797c
+	joinOnDateBehavior: datePartOnly
+	fromColumn: FCT_QSR_TRANSACTIONS.TRANSACTION_DATE
+	toColumn: LocalDateTable_1a7af36a-6ece-42af-815e-c37362f397bb.Date
+
+relationship 3a60c2bf-283f-4a9c-9cb5-fbe0118fd6a3
+	joinOnDateBehavior: datePartOnly
+	fromColumn: FCT_QSR_TRANSACTIONS._LOADED_AT
+	toColumn: LocalDateTable_fe0a6325-05ca-4ae6-84fe-0ed5c2be3688.Date
+
+relationship 6ba16660-048c-4563-b050-f8397397dccd
+	joinOnDateBehavior: datePartOnly
+	fromColumn: FCT_QSR_TRANSACTIONS._FACT_BUILT_AT
+	toColumn: LocalDateTable_67108409-12e0-48e6-b421-7a2fd23df45a.Date
+
+relationship 03b23040-c9ad-4b22-9a29-8f372ed821d3
+	joinOnDateBehavior: datePartOnly
+	fromColumn: DIM_PAYMENT_INSTRUMENTS._DIM_BUILT_AT
+	toColumn: LocalDateTable_3a6b933c-0ee7-48f6-a4cd-95333a34e779.Date
+
+relationship cda8da7d-4cf0-43b3-8492-f364f748da90
+	joinOnDateBehavior: datePartOnly
+	fromColumn: DIM_MERCHANTS._DIM_BUILT_AT
+	toColumn: LocalDateTable_578f50e0-92d3-4fe7-930f-edb3d9b62a30.Date
+
+relationship 9298c58e-4f34-4ada-a751-056a33f158b4
+	joinOnDateBehavior: datePartOnly
+	fromColumn: DIM_DATES.DATE_DAY
+	toColumn: LocalDateTable_f8bf84c2-dbfa-4621-ac21-caabdc5c8545.Date
+
+relationship c5c6198b-e25e-4b45-abb0-46b16eb55a61
+	joinOnDateBehavior: datePartOnly
+	fromColumn: DIM_DATES.FIRST_DAY_OF_MONTH
+	toColumn: LocalDateTable_32affe57-3bc0-4373-9e7d-0a0eb5e30e11.Date
+
+relationship 64a80d0a-fe6b-4997-8e70-728aeeef9019
+	joinOnDateBehavior: datePartOnly
+	fromColumn: DIM_DATES.LAST_DAY_OF_MONTH
+	toColumn: LocalDateTable_a987152c-f3f7-4ae1-b753-745b587875ca.Date
+
+relationship e9103cd8-223b-4c0d-bc98-98e127227ff0
+	joinOnDateBehavior: datePartOnly
+	fromColumn: DIM_DATES.FIRST_DAY_OF_QUARTER
+	toColumn: LocalDateTable_8b9b1ce9-63a6-42d6-8a1f-86c801375af7.Date
+
+relationship e60c69d2-8780-4c62-8549-94cd867ce5a0
+	joinOnDateBehavior: datePartOnly
+	fromColumn: DIM_DATES.FIRST_DAY_OF_YEAR
+	toColumn: LocalDateTable_37a0255f-6ff1-41b7-af98-69cff81e5ef3.Date
+
+relationship 5f021411-dc08-4855-b913-35838a6a8378
+	joinOnDateBehavior: datePartOnly
+	fromColumn: DIM_CARD_HOLDERS._DIM_BUILT_AT
+	toColumn: LocalDateTable_33a19437-79e0-46c0-b633-e63be8f35cfe.Date
+
+relationship cf685c01-7ad8-4d6d-b4be-70655626c347
+	joinOnDateBehavior: datePartOnly
+	fromColumn: DIM_CARD_CLASSES._DIM_BUILT_AT
+	toColumn: LocalDateTable_897a3427-34d1-437d-be43-fd844023b282.Date
+
+relationship AutoDetected_8ef998d6-85f4-4f7d-8377-30b706dc0514
+	fromColumn: FCT_DAILY_CARD_CLASS_REVENUE.CARD_CLASS
+	toColumn: DIM_CARD_CLASSES.CARD_CLASS
+
+relationship AutoDetected_555844a3-6be9-4090-b2e8-32e0017d41f9
+	fromColumn: FCT_QSR_TRANSACTIONS.CARD_CLASS
+	toColumn: DIM_CARD_CLASSES.CARD_CLASS
+
+relationship AutoDetected_2827174b-1b92-40f5-8d6d-417289fa6c99
+	fromColumn: FCT_DAILY_MERCHANT_REVENUE.MERCHANT_ID
+	toColumn: DIM_MERCHANTS.MERCHANT_ID
+
+relationship AutoDetected_b927ddf5-cb5b-4992-9d4a-0c76ba39b253
+	fromColumn: FCT_QSR_TRANSACTIONS.MERCHANT_ID
+	toColumn: DIM_MERCHANTS.MERCHANT_ID
+
+relationship AutoDetected_8ef89465-6b13-4d10-90a9-d9adc409735a
+	fromColumn: FCT_QSR_TRANSACTIONS.ACCOUNT_ID
+	toColumn: DIM_CARD_HOLDERS.ACCOUNT_ID
+
+relationship AutoDetected_3840e461-43fe-4189-8d04-8949319fa081
+	fromColumn: FCT_QSR_TRANSACTIONS.PAYMENT_ID
+	toColumn: DIM_PAYMENT_INSTRUMENTS.PAYMENT_ID
+
+relationship de50e180-a2e6-a2b9-def9-b4f2271dbbcf
+	fromColumn: FCT_QSR_TRANSACTIONS.DATE_DAY
+	toColumn: DIM_DATES.DATE_DAY
+

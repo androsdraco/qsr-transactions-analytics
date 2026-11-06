@@ -1,0 +1,97 @@
+version: 2
+
+models:
+  # ── dimensions ──────────────────────────────────────────────
+  - name: dim_dates
+    description: "Calendar dimension, 2023-01-01 through 2026-12-31."
+    columns:
+      - name: date_day
+        tests:
+          - unique
+          - not_null
+
+  - name: dim_card_classes
+    description: "One row per card prefix class (a04, b01, c03, ...)."
+    columns:
+      - name: card_class
+        tests:
+          - unique
+          - not_null
+      - name: is_anonymous_card
+        tests:
+          - not_null
+
+  - name: dim_payment_instruments
+    description: "One row per payment_id. payment_id = 0 is the 'Not Integrated' bucket."
+    columns:
+      - name: payment_id
+        tests:
+          - unique
+          - not_null
+
+  - name: dim_merchants
+    description: "One row per merchant_id, latest attributes from transaction history."
+    columns:
+      - name: merchant_id
+        tests:
+          - unique
+          - not_null
+
+  - name: dim_card_holders
+    description: "One row per account_id. Excludes anonymous b01: cards (null account_id)."
+    columns:
+      - name: account_id
+        tests:
+          - unique
+          - not_null
+
+  # ── fact ────────────────────────────────────────────────────
+  - name: fct_qsr_transactions
+    description: "Slim QSR transaction fact — keys + measures + audit. Target for Power BI Import."
+    columns:
+      - name: transaction_id
+        tests:
+          - unique
+          - not_null
+      - name: date_day
+        tests:
+          - not_null
+      - name: gross_transaction_amount
+        tests:
+          - not_null
+      - name: merchant_id
+        tests:
+          - not_null
+          # Referential integrity — every merchant_id in the fact must exist in dim_merchants
+          - relationships:
+              arguments:
+                to: ref('dim_merchants')
+                field: merchant_id
+      - name: card_class
+        tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('dim_card_classes')
+                field: card_class
+
+  # ── aggregates ──────────────────────────────────────────────
+  - name: fct_daily_merchant_revenue
+    description: "Daily revenue by merchant (excludes merchant_id = 0)."
+    columns:
+      - name: date_day
+        tests:
+          - not_null
+      - name: merchant_id
+        tests:
+          - not_null
+
+  - name: fct_daily_card_class_revenue
+    description: "Daily revenue by card class."
+    columns:
+      - name: date_day
+        tests:
+          - not_null
+      - name: card_class
+        tests:
+          - not_null

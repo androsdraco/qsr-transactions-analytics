@@ -1,0 +1,64 @@
+
+---
+
+## Key insight discovered
+
+While profiling the source data, I noticed that ~2.65% of transactions
+(132,731 rows) had `NULL` in `ACCOUNT_ID`. Investigation revealed a
+perfect correlation with a specific card class:
+
+| CARD_ID prefix | Total rows | NULL account_id |
+|----------------|------------|-----------------|
+| `b01:` | 132,731 | **132,731 (100%)** |
+| all others | 4,867,269 | **0** |
+
+The `b01:` prefix marks payroll cards, vending tokens, and batch-settled
+cards — transaction classes that structurally have no cardholder identity.
+This is not a data-quality issue; it's a designed characteristic of the
+dataset.
+
+**How this insight changed the pipeline:**
+- Added a `card_class` dimension with human-readable descriptions
+- Added an `is_anonymous_card` flag to every model
+- Replaced a blanket `not_null` test with a structural invariant test
+  (`no_account_id_for_b01_cards.sql`) that asserts the rule going forward
+- Documented the null-handling strategy in the source schema
+
+This is the kind of discovery that only surfaces when you profile the data
+before modeling it — and it fundamentally shapes how downstream analysts
+interpret the dashboards.
+
+---
+
+## Dashboards
+
+### Executive Overview
+![Executive Overview](03_powerbi/dashboard_screenshots/executive_overview.png)
+
+### Merchant Intelligence
+![Merchant Intelligence](03_powerbi/dashboard_screenshots/merchant_intelligence.png)
+
+### Consumer Behavior
+![Consumer Behavior](03_powerbi/dashboard_screenshots/consumer_behavior.png)
+
+---
+
+## Running the project locally
+
+**Prerequisites:** Snowflake account, dbt (v1.7+), Power BI Desktop
+
+### 1. Configure Snowflake
+Run `01_snowflake/setup.sql` as `SECURITYADMIN`. This creates the
+`database_viewer` role, grants source access, and creates the target
+database.
+
+### 2. Configure dbt credentials
+Copy `profiles.yml.example` to `~/.dbt/profiles.yml` and fill in your
+Snowflake account, user, and password (or set the environment variables
+shown in the file).
+
+### 3. Build the models
+```bash
+cd 02_dbt
+dbt deps
+dbt build   # runs 15 models and 54 tests

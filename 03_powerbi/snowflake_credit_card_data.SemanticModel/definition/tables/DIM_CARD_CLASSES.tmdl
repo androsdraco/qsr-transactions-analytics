@@ -1,0 +1,73 @@
+table DIM_CARD_CLASSES
+	lineageTag: 35d9258d-7b9c-4848-a8f0-9da119cc4426
+
+	column CARD_CLASS
+		dataType: string
+		lineageTag: 7b9259a6-59c4-4fe3-b08b-6cda58836469
+		summarizeBy: none
+		sourceColumn: CARD_CLASS
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column CARD_CLASS_DESCRIPTION
+		dataType: string
+		lineageTag: 6e8747a2-cc66-4cf9-b986-130989802b93
+		summarizeBy: none
+		sourceColumn: CARD_CLASS_DESCRIPTION
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column IS_ANONYMOUS_CARD
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 8cd2132a-7b5a-417f-81a7-1c4ad6faa593
+		summarizeBy: none
+		sourceColumn: IS_ANONYMOUS_CARD
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column CARD_SEGMENT
+		dataType: string
+		lineageTag: 89e37a3e-f670-4722-a74c-20bd0bf2b9d1
+		summarizeBy: none
+		sourceColumn: CARD_SEGMENT
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column _DIM_BUILT_AT
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 4a244fba-2f96-4c9a-b6d1-2261fbb29c18
+		summarizeBy: none
+		sourceColumn: _DIM_BUILT_AT
+
+		variation Variation
+			isDefault
+			relationship: cf685c01-7ad8-4d6d-b4be-70655626c347
+			defaultHierarchy: LocalDateTable_897a3427-34d1-437d-be43-fd844023b282.'Date Hierarchy'
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DIM_CARD_CLASSES = m
+		mode: import
+		source =
+				let
+				    Source = Snowflake.Databases("YTIGPIZ-WM74446.snowflakecomputing.com","compute_wh",[Implementation="2.0"]),
+				    DBT_CREDIT_CARD_Database = Source{[Name="DBT_CREDIT_CARD",Kind="Database"]}[Data],
+				    SNOWFLAKE_MARKETPLACE_Schema = DBT_CREDIT_CARD_Database{[Name="SNOWFLAKE_MARKETPLACE",Kind="Schema"]}[Data],
+				    DIM_CARD_CLASSES_Table = SNOWFLAKE_MARKETPLACE_Schema{[Name="DIM_CARD_CLASSES",Kind="Table"]}[Data]
+				in
+				    DIM_CARD_CLASSES_Table
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,53 @@
+table _CALCULATIONS
+	lineageTag: 612098ca-3e18-477c-bcc2-7f5b0e79b570
+
+	measure 'Total Spend' = SUM(fct_qsr_transactions[gross_transaction_amount])
+		lineageTag: fad3f6a1-c05a-4892-936e-fb9e0c1b98b9
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Txn Count' = COUNTROWS(fct_qsr_transactions)
+		formatString: 0
+		lineageTag: 323205ee-f7d8-4247-a857-6cf82eb5c867
+
+	measure 'Avg Ticket' = DIVIDE([Total Spend], [Txn Count])
+		lineageTag: b1f05717-dc39-4850-860f-ab2193091b96
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Distinct Consumers' = DISTINCTCOUNT(fct_qsr_transactions[account_id])
+		formatString: 0
+		lineageTag: 5522c943-c0ec-49f0-a515-b9bee05fb9e1
+
+	measure 'Consumer Spend' = CALCULATE([Total Spend], dim_card_classes[is_anonymous_card] = FALSE)
+		lineageTag: 1025d5a5-acea-4f8a-b1f6-8298031bd213
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Consumer Share %' = DIVIDE([Consumer Spend], [Total Spend])
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: a763e80e-7a27-40fa-a138-a91d259129cc
+
+	measure 'Spend MoM %' = ```
+			
+			    VAR CurrentMonth = [Total Spend]
+			    VAR PrevMonth    = CALCULATE([Total Spend], DATEADD(dim_dates[date_day], -1, MONTH))
+			    RETURN DIVIDE(CurrentMonth - PrevMonth, PrevMonth)
+			```
+		lineageTag: 42ef0aca-c534-454f-8fa3-34ab51522ca9
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition _CALCULATIONS = m
+		mode: import
+		source =
+				let
+				  Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Column1 = _t]),
+				    #"Removed Columns" = Table.RemoveColumns(Source,{"Column1"})
+				in
+				  #"Removed Columns"
+
+	changedProperty = Name
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,174 @@
+table FCT_QSR_TRANSACTIONS
+	lineageTag: bcb98e2b-7a89-49c1-b315-c1f771cf8032
+
+	column TRANSACTION_ID
+		dataType: string
+		lineageTag: 4934f093-9588-458f-9d39-866623d25704
+		summarizeBy: none
+		sourceColumn: TRANSACTION_ID
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column TRANSACTION_DATE
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 34bb754f-3d05-4281-a13a-4ab35fa81199
+		summarizeBy: none
+		sourceColumn: TRANSACTION_DATE
+
+		variation Variation
+			isDefault
+			relationship: 124d7c62-86ae-4f0e-8763-f77f38b7797c
+			defaultHierarchy: LocalDateTable_1a7af36a-6ece-42af-815e-c37362f397bb.'Date Hierarchy'
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column DATE_DAY
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 9cfe792b-aede-4cc6-b180-6f05f68bcdcc
+		summarizeBy: none
+		sourceColumn: DATE_DAY
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column MERCHANT_ID
+		dataType: double
+		lineageTag: 2ed04753-e05d-4358-80c3-22573903ae96
+		summarizeBy: none
+		sourceColumn: MERCHANT_ID
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ACCOUNT_ID
+		dataType: string
+		lineageTag: 8e929067-f355-4452-81b2-15edee68f88a
+		summarizeBy: none
+		sourceColumn: ACCOUNT_ID
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column PAYMENT_ID
+		dataType: double
+		lineageTag: 914d4b1c-8d6a-43a8-b8bb-ed313dea0916
+		summarizeBy: none
+		sourceColumn: PAYMENT_ID
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column CARD_CLASS
+		dataType: string
+		lineageTag: b85d9943-1293-4c97-bcc4-9f7899922499
+		summarizeBy: none
+		sourceColumn: CARD_CLASS
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column IS_ANONYMOUS_CARD
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: f69c9700-626b-4b5a-b457-ab0584fe54cb
+		summarizeBy: none
+		sourceColumn: IS_ANONYMOUS_CARD
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column TRANSACTION_TYPE
+		dataType: string
+		lineageTag: 3ea4286e-162a-4c23-bf50-cb9e46470fdb
+		summarizeBy: none
+		sourceColumn: TRANSACTION_TYPE
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column CURRENCY_CODE
+		dataType: string
+		lineageTag: 9bb45967-ada8-4db8-9f44-7952b0f7c854
+		summarizeBy: none
+		sourceColumn: CURRENCY_CODE
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column GROSS_TRANSACTION_AMOUNT
+		dataType: double
+		lineageTag: 8abd6c44-e5d8-410d-a910-c10aa8036e94
+		summarizeBy: sum
+		sourceColumn: GROSS_TRANSACTION_AMOUNT
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column _LOADED_AT
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: b02b6ed7-e341-4740-b996-f6c786750d9b
+		summarizeBy: none
+		sourceColumn: _LOADED_AT
+
+		variation Variation
+			isDefault
+			relationship: 3a60c2bf-283f-4a9c-9cb5-fbe0118fd6a3
+			defaultHierarchy: LocalDateTable_fe0a6325-05ca-4ae6-84fe-0ed5c2be3688.'Date Hierarchy'
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column _FACT_BUILT_AT
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: ec133752-3370-4960-af72-4bdb179a1235
+		summarizeBy: none
+		sourceColumn: _FACT_BUILT_AT
+
+		variation Variation
+			isDefault
+			relationship: 6ba16660-048c-4563-b050-f8397397dccd
+			defaultHierarchy: LocalDateTable_67108409-12e0-48e6-b421-7a2fd23df45a.'Date Hierarchy'
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	partition FCT_QSR_TRANSACTIONS = m
+		mode: import
+		source =
+				let
+				    Source = Snowflake.Databases("YTIGPIZ-WM74446.snowflakecomputing.com","compute_wh",[Implementation="2.0"]),
+				    DBT_CREDIT_CARD_Database = Source{[Name="DBT_CREDIT_CARD",Kind="Database"]}[Data],
+				    SNOWFLAKE_MARKETPLACE_Schema = DBT_CREDIT_CARD_Database{[Name="SNOWFLAKE_MARKETPLACE",Kind="Schema"]}[Data],
+				    FCT_QSR_TRANSACTIONS_Table = SNOWFLAKE_MARKETPLACE_Schema{[Name="FCT_QSR_TRANSACTIONS",Kind="Table"]}[Data]
+				in
+				    FCT_QSR_TRANSACTIONS_Table
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,33 @@
+# profiles.yml.example
+# ─────────────────────────────────────────────────────────────
+# This profile reads secrets from environment variables, so no
+# credentials ever appear in a committed file.
+#
+# 1. Copy to ~/.dbt/profiles.yml:
+#       cp 02_dbt/profiles.yml.example ~/.dbt/profiles.yml
+#
+# 2. Set the environment variables (PowerShell example):
+#       $env:SNOWFLAKE_ACCOUNT  = "AB12345-XY67890"
+#       $env:SNOWFLAKE_USER     = "YOUR_NAME"
+#       $env:SNOWFLAKE_PASSWORD = "your-password"
+#
+# 3. Run `dbt debug` to verify the connection.
+#
+# The variables can be set per-session, in a .env file loaded by
+# your shell, or in CI secrets (GitHub Actions, etc.).
+# ─────────────────────────────────────────────────────────────
+
+credit_card:
+  target: dev
+  outputs:
+    dev:
+      type: snowflake
+      account:   "{{ env_var('SNOWFLAKE_ACCOUNT') }}"
+      user:      "{{ env_var('SNOWFLAKE_USER') }}"
+      password:  "{{ env_var('SNOWFLAKE_PASSWORD') }}"
+      role:      "{{ env_var('SNOWFLAKE_ROLE',     'database_viewer') }}"
+      database:  "{{ env_var('SNOWFLAKE_DATABASE', 'DBT_CREDIT_CARD') }}"
+      warehouse: "{{ env_var('SNOWFLAKE_WAREHOUSE','compute_wh') }}"
+      schema:    "{{ env_var('SNOWFLAKE_SCHEMA',   'SNOWFLAKE_MARKETPLACE') }}"
+      threads: 4
+      client_session_keep_alive: false

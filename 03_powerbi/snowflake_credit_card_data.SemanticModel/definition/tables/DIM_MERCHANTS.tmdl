@@ -1,0 +1,209 @@
+table DIM_MERCHANTS
+	lineageTag: fbf04f1f-168d-4e96-8b14-8ce0e2f702fb
+
+	column MERCHANT_ID
+		dataType: double
+		lineageTag: 4f482aab-0a59-4f4d-b5f6-42494084ff92
+		summarizeBy: none
+		sourceColumn: MERCHANT_ID
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column MERCHANT_NAME
+		dataType: string
+		lineageTag: b023d87b-d634-465a-a23e-85001a7dcb55
+		summarizeBy: none
+		sourceColumn: MERCHANT_NAME
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column MERCHANT_CITY
+		dataType: string
+		lineageTag: b4b3112d-bb3f-47b5-ad6d-25848af6f2f2
+		summarizeBy: none
+		sourceColumn: MERCHANT_CITY
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column MERCHANT_STATE
+		dataType: string
+		lineageTag: 53eed9b7-e11d-472e-ba2b-983f5fff9bb3
+		summarizeBy: none
+		sourceColumn: MERCHANT_STATE
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column MERCHANT_MSA
+		dataType: string
+		lineageTag: 7e14526c-965c-4a17-a614-c52215fd5021
+		summarizeBy: none
+		sourceColumn: MERCHANT_MSA
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column MERCHANT_POSTAL_CODE
+		dataType: string
+		lineageTag: 2fe03d0b-9783-411d-a153-14e26d92abde
+		summarizeBy: none
+		sourceColumn: MERCHANT_POSTAL_CODE
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column MERCHANT_LATITUDE
+		dataType: double
+		lineageTag: 116bd9ae-ad6f-4e26-98e0-f1a3794e1f92
+		summarizeBy: none
+		sourceColumn: MERCHANT_LATITUDE
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column MERCHANT_LONGITUDE
+		dataType: double
+		lineageTag: 1c3a5999-e5eb-42ce-b0c2-fd7be3939b45
+		summarizeBy: none
+		sourceColumn: MERCHANT_LONGITUDE
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column MERCHANT_STORE_ID
+		dataType: string
+		lineageTag: 28dbc509-59d8-4cd3-91f4-34cf835a280c
+		summarizeBy: none
+		sourceColumn: MERCHANT_STORE_ID
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column MERCHANT_STORE_LOCATION
+		dataType: string
+		lineageTag: 82ed7e32-119f-4c07-bc52-58249b864ca5
+		summarizeBy: none
+		sourceColumn: MERCHANT_STORE_LOCATION
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column MERCHANT_STORE_ADDRESS
+		dataType: string
+		lineageTag: dbfaf051-10cf-4144-a71e-f186cf2411a0
+		summarizeBy: none
+		sourceColumn: MERCHANT_STORE_ADDRESS
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column MCC_CODE
+		dataType: string
+		lineageTag: cd4d97e8-034e-4f4e-a9ee-b998e488ee11
+		summarizeBy: none
+		sourceColumn: MCC_CODE
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column TOP_MCC_CODE
+		dataType: string
+		lineageTag: d4b507b6-06c4-4d36-a11e-ac6c03b15998
+		summarizeBy: none
+		sourceColumn: TOP_MCC_CODE
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column MERCHANT_CATEGORY_LEVEL_1
+		dataType: string
+		lineageTag: 5055a0b1-8849-490a-9424-c364e2d23605
+		summarizeBy: none
+		sourceColumn: MERCHANT_CATEGORY_LEVEL_1
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column MERCHANT_CATEGORY_LEVEL_2
+		dataType: string
+		lineageTag: 3efc37cc-c534-4a9c-8327-828212004331
+		summarizeBy: none
+		sourceColumn: MERCHANT_CATEGORY_LEVEL_2
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column MERCHANT_CATEGORY_LEVEL_3
+		dataType: string
+		lineageTag: 9ca7f524-fccf-4166-b834-72b66fd84566
+		summarizeBy: none
+		sourceColumn: MERCHANT_CATEGORY_LEVEL_3
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column IS_KNOWN_MERCHANT
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: bcbe29ae-25ea-4fc8-a567-0cbbd2eb4896
+		summarizeBy: none
+		sourceColumn: IS_KNOWN_MERCHANT
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column _DIM_BUILT_AT
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 6d01ffc8-76b1-4d5a-8b88-8b56f5b2c366
+		summarizeBy: none
+		sourceColumn: _DIM_BUILT_AT
+
+		variation Variation
+			isDefault
+			relationship: cda8da7d-4cf0-43b3-8492-f364f748da90
+			defaultHierarchy: LocalDateTable_578f50e0-92d3-4fe7-930f-edb3d9b62a30.'Date Hierarchy'
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DIM_MERCHANTS = m
+		mode: import
+		source =
+				let
+				    Source = Snowflake.Databases("YTIGPIZ-WM74446.snowflakecomputing.com","compute_wh",[Implementation="2.0"]),
+				    DBT_CREDIT_CARD_Database = Source{[Name="DBT_CREDIT_CARD",Kind="Database"]}[Data],
+				    SNOWFLAKE_MARKETPLACE_Schema = DBT_CREDIT_CARD_Database{[Name="SNOWFLAKE_MARKETPLACE",Kind="Schema"]}[Data],
+				    DIM_MERCHANTS_Table = SNOWFLAKE_MARKETPLACE_Schema{[Name="DIM_MERCHANTS",Kind="Table"]}[Data]
+				in
+				    DIM_MERCHANTS_Table
+
+	annotation PBI_ResultType = Table
+

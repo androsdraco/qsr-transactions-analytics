@@ -1,0 +1,25 @@
+version: 2
+
+sources:
+  - name: marketplace
+    description: "Snowflake Marketplace — Fast food & QSR credit/debit transaction sample (5M rows)."
+    database: CREDITDEBIT_TRANSACTIONS_FAST_FOOD_AND_QUICK_SERVICE_RESTAURANTS
+    schema: SNOWFLAKE_MARKETPLACE
+    tables:
+      - name: QSR_TRANSACTIONS_SAMPLE
+        description: "One row per card transaction at a QSR merchant."
+        columns:
+          - name: TRANSACTION_ID
+            description: "Transaction identifier."
+            tests:
+              - not_null
+          - name: TRANSACTION_DATE
+            description: "Transaction timestamp (UTC)."
+            tests:
+              - not_null
+          - name: ACCOUNT_ID
+            description: "Cardholder account. NULL when CARD_ID starts with 'b01:' (payroll/vending/anonymous card class — 132,731 of 5M rows)."
+            tests:
+              - not_null:
+                  config:
+                    severity: warn

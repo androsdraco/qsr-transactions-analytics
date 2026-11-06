@@ -1,0 +1,158 @@
+table FCT_DAILY_MERCHANT_REVENUE
+	lineageTag: 99374db3-1631-40f1-b0ef-95f78b3f1254
+
+	column DATE_DAY
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 19dd2668-9e5d-446c-a7dd-efa9d0ccc8ed
+		summarizeBy: none
+		sourceColumn: DATE_DAY
+
+		variation Variation
+			isDefault
+			relationship: 75d9ca8e-d49f-4b0d-941e-ab1ab6efa87c
+			defaultHierarchy: LocalDateTable_c9854f27-9b5b-4c45-9743-0c3edcaaf139.'Date Hierarchy'
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column MERCHANT_ID
+		dataType: double
+		lineageTag: 0d156bc3-01ce-40be-ae37-dae25de7ee86
+		summarizeBy: none
+		sourceColumn: MERCHANT_ID
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column TOTAL_TXN_COUNT
+		dataType: double
+		lineageTag: 50da289d-128b-491a-a696-618002569ad5
+		summarizeBy: sum
+		sourceColumn: TOTAL_TXN_COUNT
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column CONSUMER_TXN_COUNT
+		dataType: double
+		lineageTag: f164c1df-1e1d-409b-9bfe-3a936678151e
+		summarizeBy: sum
+		sourceColumn: CONSUMER_TXN_COUNT
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ANONYMOUS_TXN_COUNT
+		dataType: double
+		lineageTag: c32275c5-8449-44cb-a8a7-fe8348fcf10f
+		summarizeBy: sum
+		sourceColumn: ANONYMOUS_TXN_COUNT
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column TOTAL_SPEND
+		dataType: double
+		lineageTag: ed9cdda8-9edc-4971-bcd2-f6094f5bb7e6
+		summarizeBy: none
+		sourceColumn: TOTAL_SPEND
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column CONSUMER_SPEND
+		dataType: double
+		lineageTag: f9df9da4-cf23-4127-9ffe-137a5b964dfb
+		summarizeBy: sum
+		sourceColumn: CONSUMER_SPEND
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ANONYMOUS_SPEND
+		dataType: double
+		lineageTag: 9a92aff1-6955-44d7-925f-67add4161431
+		summarizeBy: sum
+		sourceColumn: ANONYMOUS_SPEND
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column AVG_TICKET
+		dataType: double
+		lineageTag: 223158e7-f8d0-4e0b-816b-86f068ba09a2
+		summarizeBy: none
+		sourceColumn: AVG_TICKET
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column DISTINCT_CONSUMERS
+		dataType: double
+		lineageTag: 2f9deb1e-1988-4297-b1ec-aa98055b2c2f
+		summarizeBy: sum
+		sourceColumn: DISTINCT_CONSUMERS
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column _MART_BUILT_AT
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: ff68c14c-44e7-4f74-8b1d-e15cbdd851fb
+		summarizeBy: none
+		sourceColumn: _MART_BUILT_AT
+
+		variation Variation
+			isDefault
+			relationship: ba242da0-b212-4e8c-916b-90529e1e7e8a
+			defaultHierarchy: LocalDateTable_8d9d876e-e3c7-449e-8c68-9d4f4ce1ca63.'Date Hierarchy'
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	partition FCT_DAILY_MERCHANT_REVENUE = m
+		mode: import
+		source =
+				let
+				    Source = Snowflake.Databases("YTIGPIZ-WM74446.snowflakecomputing.com","compute_wh",[Implementation="2.0"]),
+				    DBT_CREDIT_CARD_Database = Source{[Name="DBT_CREDIT_CARD",Kind="Database"]}[Data],
+				    SNOWFLAKE_MARKETPLACE_Schema = DBT_CREDIT_CARD_Database{[Name="SNOWFLAKE_MARKETPLACE",Kind="Schema"]}[Data],
+				    FCT_DAILY_MERCHANT_REVENUE_Table = SNOWFLAKE_MARKETPLACE_Schema{[Name="FCT_DAILY_MERCHANT_REVENUE",Kind="Table"]}[Data]
+				in
+				    FCT_DAILY_MERCHANT_REVENUE_Table
+
+	annotation PBI_ResultType = Table
+

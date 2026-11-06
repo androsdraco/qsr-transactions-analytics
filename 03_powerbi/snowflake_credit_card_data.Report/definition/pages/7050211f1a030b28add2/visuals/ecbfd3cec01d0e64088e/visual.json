@@ -1,0 +1,225 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "name": "ecbfd3cec01d0e64088e",
+  "position": {
+    "x": 20,
+    "y": 628,
+    "z": 0,
+    "height": 376,
+    "width": 420,
+    "tabOrder": 0
+  },
+  "visual": {
+    "visualType": "tableEx",
+    "query": {
+      "queryState": {
+        "Values": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "DIM_MERCHANTS"
+                    }
+                  },
+                  "Property": "MERCHANT_NAME"
+                }
+              },
+              "queryRef": "DIM_MERCHANTS.MERCHANT_NAME",
+              "nativeQueryRef": "MERCHANT_NAME"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FCT_DAILY_MERCHANT_REVENUE"
+                    }
+                  },
+                  "Property": "TOTAL_SPEND"
+                }
+              },
+              "queryRef": "FCT_DAILY_MERCHANT_REVENUE.TOTAL_SPEND",
+              "nativeQueryRef": "TOTAL_SPEND"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "FCT_DAILY_MERCHANT_REVENUE"
+                    }
+                  },
+                  "Property": "AVG_TICKET"
+                }
+              },
+              "queryRef": "FCT_DAILY_MERCHANT_REVENUE.AVG_TICKET",
+              "nativeQueryRef": "AVG_TICKET"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "FCT_DAILY_MERCHANT_REVENUE"
+                  }
+                },
+                "Property": "AVG_TICKET"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ]
+      }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "d346a96736eeaac34e7a",
+        "ordinal": 0,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DIM_MERCHANTS"
+              }
+            },
+            "Property": "MERCHANT_NAME"
+          }
+        },
+        "type": "TopN",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "subquery",
+              "Expression": {
+                "Subquery": {
+                  "Query": {
+                    "Version": 2,
+                    "From": [
+                      {
+                        "Name": "d",
+                        "Entity": "DIM_MERCHANTS",
+                        "Type": 0
+                      },
+                      {
+                        "Name": "f",
+                        "Entity": "FCT_DAILY_MERCHANT_REVENUE",
+                        "Type": 0
+                      }
+                    ],
+                    "Select": [
+                      {
+                        "Column": {
+                          "Expression": {
+                            "SourceRef": {
+                              "Source": "d"
+                            }
+                          },
+                          "Property": "MERCHANT_NAME"
+                        },
+                        "Name": "field"
+                      }
+                    ],
+                    "OrderBy": [
+                      {
+                        "Direction": 2,
+                        "Expression": {
+                          "Aggregation": {
+                            "Expression": {
+                              "Column": {
+                                "Expression": {
+                                  "SourceRef": {
+                                    "Source": "f"
+                                  }
+                                },
+                                "Property": "TOTAL_SPEND"
+                              }
+                            },
+                            "Function": 1
+                          }
+                        }
+                      }
+                    ],
+                    "Top": 25
+                  }
+                }
+              },
+              "Type": 2
+            },
+            {
+              "Name": "d",
+              "Entity": "DIM_MERCHANTS",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "In": {
+                  "Expressions": [
+                    {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Source": "d"
+                          }
+                        },
+                        "Property": "MERCHANT_NAME"
+                      }
+                    }
+                  ],
+                  "Table": {
+                    "SourceRef": {
+                      "Source": "subquery"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "74b9a6460933918e25a9",
+        "ordinal": 1,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FCT_DAILY_MERCHANT_REVENUE"
+              }
+            },
+            "Property": "AVG_TICKET"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "4e3bbf70078107c3a420",
+        "ordinal": 2,
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "FCT_DAILY_MERCHANT_REVENUE"
+              }
+            },
+            "Property": "TOTAL_SPEND"
+          }
+        },
+        "type": "Advanced"
+      }
+    ],
+    "filterSortOrder": "Custom"
+  }
+}

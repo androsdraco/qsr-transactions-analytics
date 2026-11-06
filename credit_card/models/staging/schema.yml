@@ -1,0 +1,50 @@
+version: 2
+
+models:
+  - name: stg_marketplace__qsr_transactions
+    description: >
+      Cleaned staging layer over the Marketplace QSR table. Coalesces blank/nulls
+      on string categoricals and card-holder metrics; preserves nulls on account_id
+      (b01: signal) and geographic coordinates.
+    columns:
+      - name: transaction_id
+        description: "Transaction identifier."
+        tests:
+          - not_null
+      - name: transaction_date
+        description: "Transaction timestamp."
+        tests:
+          - not_null
+      - name: gross_transaction_amount
+        description: "Transaction amount in transaction currency."
+        tests:
+          - not_null
+      - name: card_class
+        description: "First segment of CARD_ID before the colon (a04, b01, c03, ...)."
+        tests:
+          - not_null
+          - accepted_values:
+              arguments:
+                values:
+                  - 'a01'
+                  - 'a03'
+                  - 'a04'
+                  - 'a09'
+                  - 'a13'
+                  - 'a14'
+                  - 'b01'
+                  - 'c03'
+                  - 'i01'
+                  - 'o91'
+                  - 'o92'
+                  - 'o93'
+                  - 't01'
+                  - 'v01'
+                  - 'x01'
+                  - 'UNKNOWN'
+              config:
+                severity: warn
+      - name: is_anonymous_card
+        description: "True when card_id starts with b01: (payroll/vending/anonymous card classes)."
+        tests:
+          - not_null

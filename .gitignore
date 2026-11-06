@@ -1,0 +1,37 @@
+# ── Credentials (NEVER commit) ──────────────────────────────
+profiles.yml
+.env
+.env.*
+.user.yml
+*.p8
+*.pem
+*.key
+
+# ── dbt artifacts ────────────────────────────────────────────
+target/
+dbt_packages/
+dbt_modules/
+logs/
+package-lock.yml
+
+# ── Python (if you add scripts later) ────────────────────────
+.venv/
+venv/
+__pycache__/
+*.pyc
+
+# ── Power BI local cache / temp ──────────────────────────────
+*.pbix~
+~$*.pbix
+*.tmp
+
+# ── IDE / OS ─────────────────────────────────────────────────
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# ── Local data exports ───────────────────────────────────────
+*.csv
+*.xlsx
+!seeds/**/*.csv

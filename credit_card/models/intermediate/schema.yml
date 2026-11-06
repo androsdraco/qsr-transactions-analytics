@@ -1,0 +1,32 @@
+version: 2
+
+models:
+  - name: int_qsr__transactions_base
+    description: "Transaction spine: IDs, amounts, timestamps, attributes."
+    columns:
+      - name: transaction_id
+        tests: [not_null]
+      - name: transaction_date
+        tests: [not_null]
+      - name: gross_transaction_amount
+        tests: [not_null]
+
+  - name: int_qsr__transactions_location
+    columns:
+      - name: transaction_id
+        tests: [not_null]
+
+  - name: int_qsr__merchants
+    columns:
+      - name: transaction_id
+        tests: [not_null]
+
+  - name: int_qsr__card_holders
+    columns:
+      - name: transaction_id
+        tests: [not_null]
+
+  - name: int_qsr__payment_instruments
+    columns:
+      - name: transaction_id
+        tests: [not_null]

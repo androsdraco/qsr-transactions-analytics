@@ -1,0 +1,138 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 58.107199448406227,
+        "y": 39.682965724203115
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 698.34160238660854,
+            "y": 610.53555420035764
+          },
+          "nodeIndex": "DIM_CARD_CLASSES",
+          "nodeLineageTag": "35d9258d-7b9c-4848-a8f0-9da119cc4426",
+          "size": {
+            "height": 200,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 342.86330342677081,
+            "y": 702.900806694969
+          },
+          "nodeIndex": "DIM_CARD_HOLDERS",
+          "nodeLineageTag": "6ae7eb09-2028-46aa-b18e-489b6007045e",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 800.38787187951914,
+            "y": 54.026301347484505
+          },
+          "nodeIndex": "DIM_DATES",
+          "nodeLineageTag": "2e5005bf-8cbb-4b72-a3b6-6ea28f84fc4d",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 50,
+            "y": 384.66660950244943
+          },
+          "nodeIndex": "DIM_MERCHANTS",
+          "nodeLineageTag": "fbf04f1f-168d-4e96-8b14-8ce0e2f702fb",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 452.46680701506563,
+            "y": -50
+          },
+          "nodeIndex": "DIM_PAYMENT_INSTRUMENTS",
+          "nodeLineageTag": "f8339c5b-db9f-47ba-8513-e8ea7e441582",
+          "size": {
+            "height": 248,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 984.47626787951913,
+            "y": 622.82633183077371
+          },
+          "nodeIndex": "FCT_DAILY_CARD_CLASS_REVENUE",
+          "nodeLineageTag": "fa07a943-92bf-4228-97ff-cf24c0bbc50f",
+          "size": {
+            "height": 272,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 49.929977812390234,
+            "y": 0
+          },
+          "nodeIndex": "FCT_DAILY_MERCHANT_REVENUE",
+          "nodeLineageTag": "99374db3-1631-40f1-b0ef-95f78b3f1254",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 369.27816332054033,
+            "y": 310.17399143168586
+          },
+          "nodeIndex": "FCT_QSR_TRANSACTIONS",
+          "nodeLineageTag": "bcb98e2b-7a89-49c1-b315-c1f771cf8032",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 1452.6163122547387,
+            "y": 474.45040334748455
+          },
+          "nodeIndex": "_CALCULATIONS",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 0
+        }
+      ],
+      "name": "All tables",
+      "zoomValue": 56.447393005377734,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "All tables",
+  "defaultDiagram": "All tables"
+}

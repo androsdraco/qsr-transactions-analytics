@@ -1,0 +1,8 @@
+// Welcome to DAX query view! Learn more about DAX queries at https://aka.ms/dax-queries.
+// Right-click on tables, columns, or measures in the data pane to access quick queries, or ask Copilot for help writing DAX.
+DEFINE
+    MEASURE 'fct_qsr_transactions'[Total Spend] = SUM('fct_qsr_transactions'[gross_transaction_amount])
+    MEASURE 'fct_qsr_transactions'[Txn Count] = COUNTROWS('fct_qsr_transactions')
+    MEASURE 'fct_qsr_transactions'[Avg Ticket] = DIVIDE([Total Spend], [Txn Count])
+EVALUATE
+    ROW("Total Spend", [Total Spend], "Txn Count", [Txn Count], "Avg Ticket", [Avg Ticket])

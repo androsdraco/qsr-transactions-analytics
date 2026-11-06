@@ -1,0 +1,196 @@
+table DIM_CARD_HOLDERS
+	lineageTag: 6ae7eb09-2028-46aa-b18e-489b6007045e
+
+	column ACCOUNT_ID
+		dataType: string
+		lineageTag: ec4dece3-b3ec-4c3a-aa0d-2b3f0c83a386
+		summarizeBy: none
+		sourceColumn: ACCOUNT_ID
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column CARD_HOLDER_CITY
+		dataType: string
+		lineageTag: 6b4d78a1-2766-4c50-88eb-885e49c9d02b
+		summarizeBy: none
+		sourceColumn: CARD_HOLDER_CITY
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column CARD_HOLDER_STATE
+		dataType: string
+		lineageTag: 0795ea20-44b8-4c7b-a310-609f77b45cf0
+		summarizeBy: none
+		sourceColumn: CARD_HOLDER_STATE
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column CARD_HOLDER_MSA
+		dataType: string
+		lineageTag: 07ad1a47-d7a8-4597-8352-b6efe8df99e2
+		summarizeBy: none
+		sourceColumn: CARD_HOLDER_MSA
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column CARD_HOLDER_POSTAL_CODE
+		dataType: string
+		lineageTag: 54e0dbe0-c43e-49ab-acb2-716b8b9e6cc4
+		summarizeBy: none
+		sourceColumn: CARD_HOLDER_POSTAL_CODE
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column CARD_HOLDER_POSTAL_CODE_PRESENT
+		dataType: string
+		lineageTag: f6ac7478-92ce-4b4f-95cb-d9bf3cbfb1cc
+		summarizeBy: none
+		sourceColumn: CARD_HOLDER_POSTAL_CODE_PRESENT
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column CARD_HOLDER_LATITUDE
+		dataType: double
+		lineageTag: 1291a5cf-8b4d-4b1d-be7f-7bc5774050b8
+		summarizeBy: sum
+		sourceColumn: CARD_HOLDER_LATITUDE
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column CARD_HOLDER_LONGITUDE
+		dataType: double
+		lineageTag: 6ffc2772-d655-4583-9a92-133058f0a6ce
+		summarizeBy: sum
+		sourceColumn: CARD_HOLDER_LONGITUDE
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column CARD_HOLDER_GENERATION
+		dataType: string
+		lineageTag: e77dec28-7a26-4763-8e89-864650aa81a1
+		summarizeBy: none
+		sourceColumn: CARD_HOLDER_GENERATION
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column CARD_HOLDER_PERSONAS
+		dataType: string
+		lineageTag: 29dee618-182e-4b9a-9fe6-366bcbbc76e5
+		summarizeBy: none
+		sourceColumn: CARD_HOLDER_PERSONAS
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column CARD_HOLDER_VINTAGE_YEARS
+		dataType: double
+		lineageTag: a65036c8-a217-427f-82b9-080b6412f507
+		summarizeBy: sum
+		sourceColumn: CARD_HOLDER_VINTAGE_YEARS
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column LIFETIME_TXN_COUNT
+		dataType: double
+		lineageTag: 42098c29-c3a1-4f14-86d7-c1213ae9a662
+		summarizeBy: sum
+		sourceColumn: LIFETIME_TXN_COUNT
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column LIFETIME_SPEND
+		dataType: double
+		lineageTag: 25920ddf-5f58-41b9-81de-87fc967dd5f9
+		summarizeBy: sum
+		sourceColumn: LIFETIME_SPEND
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column AVG_LTM_SPEND
+		dataType: double
+		lineageTag: f1a9ea61-58e4-4b5b-9d79-404972c05d18
+		summarizeBy: sum
+		sourceColumn: AVG_LTM_SPEND
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column AVG_LTM_TXN_COUNT
+		dataType: double
+		lineageTag: 200796bc-9831-42ad-a848-d1a0c1c88bc6
+		summarizeBy: sum
+		sourceColumn: AVG_LTM_TXN_COUNT
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column _DIM_BUILT_AT
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 088241eb-45ef-4ce4-a464-3efbe82503d4
+		summarizeBy: none
+		sourceColumn: _DIM_BUILT_AT
+
+		variation Variation
+			isDefault
+			relationship: 5f021411-dc08-4855-b913-35838a6a8378
+			defaultHierarchy: LocalDateTable_33a19437-79e0-46c0-b633-e63be8f35cfe.'Date Hierarchy'
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DIM_CARD_HOLDERS = m
+		mode: import
+		source =
+				let
+				    Source = Snowflake.Databases("YTIGPIZ-WM74446.snowflakecomputing.com","compute_wh",[Implementation="2.0"]),
+				    DBT_CREDIT_CARD_Database = Source{[Name="DBT_CREDIT_CARD",Kind="Database"]}[Data],
+				    SNOWFLAKE_MARKETPLACE_Schema = DBT_CREDIT_CARD_Database{[Name="SNOWFLAKE_MARKETPLACE",Kind="Schema"]}[Data],
+				    DIM_CARD_HOLDERS_Table = SNOWFLAKE_MARKETPLACE_Schema{[Name="DIM_CARD_HOLDERS",Kind="Table"]}[Data]
+				in
+				    DIM_CARD_HOLDERS_Table
+
+	annotation PBI_ResultType = Table
+

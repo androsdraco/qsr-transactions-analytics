@@ -1,0 +1,96 @@
+table DIM_PAYMENT_INSTRUMENTS
+	lineageTag: f8339c5b-db9f-47ba-8513-e8ea7e441582
+
+	column PAYMENT_ID
+		dataType: double
+		lineageTag: 7d4d3817-537b-4e5f-a0b8-809cab2ec5e4
+		summarizeBy: none
+		sourceColumn: PAYMENT_ID
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column PAYMENT_NAME
+		dataType: string
+		lineageTag: b9695006-ab76-4afa-b3ed-4bdcc4fd6a84
+		summarizeBy: none
+		sourceColumn: PAYMENT_NAME
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column CARD_TYPE
+		dataType: string
+		lineageTag: 01df10d8-1bbb-410b-a9dc-5856caa921f9
+		summarizeBy: none
+		sourceColumn: CARD_TYPE
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column IS_CARD_PRESENT
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: d6ef7f63-380c-4f98-828e-c5d4aab991f0
+		summarizeBy: none
+		sourceColumn: IS_CARD_PRESENT
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column IS_CONSISTENT_SHOPPER
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: 58b9ea07-43ef-4b48-930f-30b1b23a7e3f
+		summarizeBy: none
+		sourceColumn: IS_CONSISTENT_SHOPPER
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column INTEGRATION_STATUS
+		dataType: string
+		lineageTag: 01f10ce3-4ff1-4a54-9b16-595a1f60af13
+		summarizeBy: none
+		sourceColumn: INTEGRATION_STATUS
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column _DIM_BUILT_AT
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 2b64e1ae-feff-4104-8540-2043c0d111e1
+		summarizeBy: none
+		sourceColumn: _DIM_BUILT_AT
+
+		variation Variation
+			isDefault
+			relationship: 03b23040-c9ad-4b22-9a29-8f372ed821d3
+			defaultHierarchy: LocalDateTable_3a6b933c-0ee7-48f6-a4cd-95333a34e779.'Date Hierarchy'
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DIM_PAYMENT_INSTRUMENTS = m
+		mode: import
+		source =
+				let
+				    Source = Snowflake.Databases("YTIGPIZ-WM74446.snowflakecomputing.com","compute_wh",[Implementation="2.0"]),
+				    DBT_CREDIT_CARD_Database = Source{[Name="DBT_CREDIT_CARD",Kind="Database"]}[Data],
+				    SNOWFLAKE_MARKETPLACE_Schema = DBT_CREDIT_CARD_Database{[Name="SNOWFLAKE_MARKETPLACE",Kind="Schema"]}[Data],
+				    DIM_PAYMENT_INSTRUMENTS_Table = SNOWFLAKE_MARKETPLACE_Schema{[Name="DIM_PAYMENT_INSTRUMENTS",Kind="Table"]}[Data]
+				in
+				    DIM_PAYMENT_INSTRUMENTS_Table
+
+	annotation PBI_ResultType = Table
+

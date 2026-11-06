@@ -1,0 +1,119 @@
+table FCT_DAILY_CARD_CLASS_REVENUE
+	lineageTag: fa07a943-92bf-4228-97ff-cf24c0bbc50f
+
+	column DATE_DAY
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 07758510-a9f3-4883-9cb4-d0caed247caf
+		summarizeBy: none
+		sourceColumn: DATE_DAY
+
+		variation Variation
+			isDefault
+			relationship: cf78d07a-75d1-49b6-8786-0543502ab510
+			defaultHierarchy: LocalDateTable_2c77da1f-294d-40e9-99e8-d2c961a7d838.'Date Hierarchy'
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column CARD_CLASS
+		dataType: string
+		lineageTag: 08a580c4-2612-42ea-8123-310ef5a5b344
+		summarizeBy: none
+		sourceColumn: CARD_CLASS
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column IS_ANONYMOUS_CARD
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		lineageTag: e2c16412-0639-4b4c-8c72-94d2e6ef2241
+		summarizeBy: none
+		sourceColumn: IS_ANONYMOUS_CARD
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	column TXN_COUNT
+		dataType: double
+		lineageTag: faabba2e-d863-4db5-a83f-77bfdb8cd503
+		summarizeBy: sum
+		sourceColumn: TXN_COUNT
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column DISTINCT_CONSUMERS
+		dataType: double
+		lineageTag: a7f7dec9-e2ff-4419-89a5-c1b388bceee0
+		summarizeBy: sum
+		sourceColumn: DISTINCT_CONSUMERS
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column TOTAL_SPEND
+		dataType: double
+		lineageTag: 1012f1d9-fd1d-4fe3-a627-dac790fddcfb
+		summarizeBy: sum
+		sourceColumn: TOTAL_SPEND
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column AVG_TICKET
+		dataType: double
+		lineageTag: 507807cd-830a-416d-92b9-a2d1d044fc72
+		summarizeBy: sum
+		sourceColumn: AVG_TICKET
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column _MART_BUILT_AT
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 3345b8ec-6c1e-47b6-92b1-284fd85b73db
+		summarizeBy: none
+		sourceColumn: _MART_BUILT_AT
+
+		variation Variation
+			isDefault
+			relationship: 020004dc-a937-426c-8aee-4c09424b6f24
+			defaultHierarchy: LocalDateTable_b44f48ae-22f2-4264-9216-36d5f93173f7.'Date Hierarchy'
+
+		changedProperty = IsHidden
+
+		annotation SummarizationSetBy = Automatic
+
+	partition FCT_DAILY_CARD_CLASS_REVENUE = m
+		mode: import
+		source =
+				let
+				    Source = Snowflake.Databases("YTIGPIZ-WM74446.snowflakecomputing.com","compute_wh",[Implementation="2.0"]),
+				    DBT_CREDIT_CARD_Database = Source{[Name="DBT_CREDIT_CARD",Kind="Database"]}[Data],
+				    SNOWFLAKE_MARKETPLACE_Schema = DBT_CREDIT_CARD_Database{[Name="SNOWFLAKE_MARKETPLACE",Kind="Schema"]}[Data],
+				    FCT_DAILY_CARD_CLASS_REVENUE_Table = SNOWFLAKE_MARKETPLACE_Schema{[Name="FCT_DAILY_CARD_CLASS_REVENUE",Kind="Table"]}[Data]
+				in
+				    FCT_DAILY_CARD_CLASS_REVENUE_Table
+
+	annotation PBI_ResultType = Table
+

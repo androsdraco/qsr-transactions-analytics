@@ -1,0 +1,44 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	valueFilterBehavior: independent
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_QueryOrder = ["FCT_DAILY_CARD_CLASS_REVENUE","FCT_DAILY_MERCHANT_REVENUE","FCT_QSR_TRANSACTIONS","DIM_PAYMENT_INSTRUMENTS","DIM_MERCHANTS","DIM_DATES","DIM_CARD_HOLDERS","DIM_CARD_CLASSES","_CALCULATIONS"]
+
+annotation PBI_ProTooling = ["DaxQueryView_Desktop","DevMode"]
+
+ref table FCT_DAILY_CARD_CLASS_REVENUE
+ref table DateTableTemplate_c7ff2f55-ba5e-4e98-9de3-43d58f674558
+ref table LocalDateTable_2c77da1f-294d-40e9-99e8-d2c961a7d838
+ref table LocalDateTable_b44f48ae-22f2-4264-9216-36d5f93173f7
+ref table FCT_DAILY_MERCHANT_REVENUE
+ref table LocalDateTable_c9854f27-9b5b-4c45-9743-0c3edcaaf139
+ref table LocalDateTable_8d9d876e-e3c7-449e-8c68-9d4f4ce1ca63
+ref table FCT_QSR_TRANSACTIONS
+ref table LocalDateTable_1a7af36a-6ece-42af-815e-c37362f397bb
+ref table LocalDateTable_fe0a6325-05ca-4ae6-84fe-0ed5c2be3688
+ref table LocalDateTable_67108409-12e0-48e6-b421-7a2fd23df45a
+ref table DIM_PAYMENT_INSTRUMENTS
+ref table LocalDateTable_3a6b933c-0ee7-48f6-a4cd-95333a34e779
+ref table DIM_MERCHANTS
+ref table LocalDateTable_578f50e0-92d3-4fe7-930f-edb3d9b62a30
+ref table DIM_DATES
+ref table LocalDateTable_f8bf84c2-dbfa-4621-ac21-caabdc5c8545
+ref table LocalDateTable_32affe57-3bc0-4373-9e7d-0a0eb5e30e11
+ref table LocalDateTable_a987152c-f3f7-4ae1-b753-745b587875ca
+ref table LocalDateTable_8b9b1ce9-63a6-42d6-8a1f-86c801375af7
+ref table LocalDateTable_37a0255f-6ff1-41b7-af98-69cff81e5ef3
+ref table DIM_CARD_HOLDERS
+ref table LocalDateTable_33a19437-79e0-46c0-b633-e63be8f35cfe
+ref table DIM_CARD_CLASSES
+ref table LocalDateTable_897a3427-34d1-437d-be43-fd844023b282
+ref table _CALCULATIONS
+
+ref cultureInfo en-US
+
